@@ -1,17 +1,20 @@
 const express=require('express');
-const mongoose=require('mongoose');
-require('dotenv').config();
+const connectDB=require('./config/db');
+const bookController=require('./controllers/books.controller');
 
 const app=express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-mongoose.connect(process.env.ATLAS_UrL,
-{useNewUrlParser:true}
-).then(()=>{
-    console.log('connection stablished')
-}).catch(err=>{
-    console.log('something went wrong ', err);
+app.use('/books',bookController);
+
+
+app.listen(5000,async()=>{
+    try {
+        await connectDB();
+        
+    } catch (error) {
+        console.log(error)
+    }
+    console.log("listening on port 5000");
 });
-
-app.listen(5000,()=>{
-    console.log('Listening on port number 5000');
-})
