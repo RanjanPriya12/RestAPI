@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/RanjanPriya12/RestAPI.git"
   },
+  "engines": {
+    "node": "16.15.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
